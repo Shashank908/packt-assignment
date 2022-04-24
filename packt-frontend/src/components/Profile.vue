@@ -145,8 +145,8 @@ export default {
           storageData.user = response.data.data;
           localStorage.setItem("user", JSON.stringify(storageData));
           window.location.reload();
-        } else if(response.data.status === 401) {
-          localStorage.removeItem('user');
+        } else if (response.data.status === 401) {
+          localStorage.removeItem("user");
           this.$router.push("/login");
         }
       });

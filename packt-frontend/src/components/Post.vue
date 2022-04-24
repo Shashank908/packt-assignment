@@ -16,7 +16,7 @@ export default {
     return {
       ptitle: "",
       postBody: "",
-      postUser:"",
+      postUser: "",
       id: "",
       showModal: false,
       sortKey: "",

@@ -57,10 +57,10 @@ export default {
       (response) => {
         if (response.data.status === 200) {
           this.postData = response.data.data;
-        } else if(response.data.status === 401) {
-          localStorage.removeItem('user');
+        } else if (response.data.status === 401) {
+          localStorage.removeItem("user");
           this.$router.push("/login");
-        } else{
+        } else {
           this.content = response.data.message;
         }
       },

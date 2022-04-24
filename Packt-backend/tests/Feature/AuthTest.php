@@ -8,32 +8,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class HttpTest extends TestCase
+class AuthTest extends TestCase
 {
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public static $access_token;
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    // protected function setUp(): void 
-    // {
-    //     parent::setUp();
-    //     // set your headers here
-    //     $response = $this->post('/api/signin', [
-    //         'email' => 'eng.raksa@gmail.com',
-    //         'password' => '123456',
-    //     ]);
-    //     $this->withHeaders([
-    //         'Authorization' => 'Bearer ' . $response['access_token']
-    //     ]);
-    // }
-
     public function test_user_register_test()
     {
         $response = $this->post('/api/register', [

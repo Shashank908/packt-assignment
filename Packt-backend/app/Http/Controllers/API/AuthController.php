@@ -19,13 +19,20 @@ class AuthController extends Controller
                 'password' => 'required',
                 'device_name' => 'required',
             ]);
+
+            if ($validated->fails()) {
+                return response([
+                    'status' => 401,
+                    'message' => $validated ->messages()
+                ]);
+            }
     
             $user = User::where('email', $request->email)->first();
          
             if (! $user || ! Hash::check($request->password, $user->password)) {
                 return response([
                     'status' => 401,
-                    'message' => $validated ->messages()
+                    'message' => "Please check your credentials"
                 ]);
             }
          
@@ -47,14 +54,14 @@ class AuthController extends Controller
         try {
             $validated = Validator::make($request->all(),[
                 'name' => 'required',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:users,email',
                 'password' => 'required'
             ]);
             
             if ($validated->fails()) {
                 return response([
                     'status' => 401,
-                    'message' => $validated ->messages()
+                    'message' => $validated->messages()
                 ]);
             }
     

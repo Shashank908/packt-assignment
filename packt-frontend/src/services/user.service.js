@@ -12,8 +12,10 @@ class UserService {
     return axios.get(API_URL + "users/all", { headers: authHeader() });
   }
 
-  getModeratorBoard(data) {
-    return axios.put(API_URL + "users", data, { headers: authHeader() });
+  updateUser(data) {
+    const newData = JSON.parse(data);
+    delete newData['dataFlag'];
+    return axios.put(API_URL + "users", newData, { headers: authHeader() });
   }
 
   deletePostOrUser(deleteData, flag) {

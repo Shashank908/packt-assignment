@@ -96,8 +96,8 @@ export default {
             this.successful = true;
             this.loading = false;
             this.$router.push("/profile");
-          } else if (response.status === 401) {
-            this.message = response.message;
+          } else if (data.status === 401) {
+            this.message = data.message;
           }
         },
         (error) => {

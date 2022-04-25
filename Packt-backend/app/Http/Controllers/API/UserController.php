@@ -102,7 +102,7 @@ class UserController extends Controller
 
     public function editPost(Request $request, $id)
     {
-        try {dd($request->getContent());
+        try {
             $data = $request->getContent();
             $data = json_decode($data, true);
 
@@ -208,7 +208,11 @@ class UserController extends Controller
             {
                 $data['password'] = bcrypt($data['password']);
             }
-        
+            
+            if(array_key_exists('dataFlag', $data))
+            {
+                unset($data['dataFlag']);
+            }
             if($query->exists())
             {
                 $query->update($data);

@@ -14,6 +14,12 @@
           <div class="modal-body">
             <slot name="body">
               <Form @submit="createPost" :validation-schema="schema">
+                <Field
+                  :value="this.flag"
+                  name="dataFlag"
+                  type="hidden"
+                  class="form-control"
+                />
                 <div v-if="this.flag === 'post'">
                   <div class="form-group">
                     <label for="title">Post Title</label>
@@ -209,38 +215,27 @@ export default {
   },
   data() {
     const schema = yup.object().shape({
-      title: yup.string().when("this.flag", {
-        is: "post",
+      dataFlag: yup.string(),
+      title: yup.string().when('dataFlag', {
+        is: value => value && value === "post",
         then: yup.string().required("Post Title is required!"),
       }),
-      postBody: yup.string().when("this.flag", {
-        is: "post",
+      postBody: yup.string().when("dataFlag", {
+        is: value => value && value === "post",
         then: yup.string().required("Post Body is required!"),
       }),
-      email: yup.string().when("this.flag", {
-        is: "user",
+      email: yup.string().when("dataFlag", {
+        is: value => value && value === "user",
         then: yup.string().required("Email is required!"),
       }),
-      gender: yup.string().when("this.flag", {
-        is: "user",
-        then: yup.string().required("Gender is required!"),
+      password: yup.string().when("dataFlag", {
+        is: value => value && value === "user",
+        then: yup.string().required("Password is required!"),
       }),
-      status: yup.string().when("this.flag", {
-        is: "user",
-        then: yup.string().required("Status is required!"),
-      }),
-      address: yup.string().when("this.flag", {
-        is: "user",
-        then: yup.string().required("Address is required!"),
-      }),
-      city: yup.string().when("this.flag", {
-        is: "user",
-        then: yup.string().required("City is required!"),
-      }),
-      country: yup.string().when("this.flag", {
-        is: "user",
-        then: yup.string().required("Country is required!"),
-      }),
+      name: yup.string().when("dataFlag", {
+        is: value => value && value === "user",
+        then: yup.string().required("Name is required!"),
+      })
     });
     return {
       message: "",
@@ -271,7 +266,7 @@ export default {
         }
       } else if (this.flag === "user") {
         if (!this.email) {
-          UserService.getModeratorBoard(JSON.stringify(data)).then(
+          UserService.updateUser(JSON.stringify(data)).then(
             (response) => {
               // this.postData = response.data;
               window.location.reload();

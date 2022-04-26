@@ -66,18 +66,6 @@ class UserTest extends TestCase
         $this->assertArrayHasKey('status', $response->json());
     }
 
-    // public function test_post_content_api_test()
-    // {
-    //     $post_data = Post::factory()->create();
-    //     //$post_data = $post_data->toArray();
-    //     $a = [
-    //         'title' => $post_data->post_title,
-    //         'postBody' => $post_data->post_body
-    //     ];
-    //     $response = $this->post('/api/posts',[ $a]);
-    //     $response->assertStatus(200);
-    // }
-
     public function test_delete_posts_api_test()
     {
         $post_data = Post::factory()->create();

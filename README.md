@@ -28,13 +28,13 @@
 this can be run every updating code time
 * `$ php artisan migrate`
 
-## After Migrate Database, Start the Laravel default server
-
-* `$ php artisan serve`
-
 ## After Migrate Database, seed the data for very first time
 Seed Data
 * `$ php artisan db:seed`
+
+## After Migrate Database, Start the Laravel default server
+
+* `$ php artisan serve`
 
 # Vue Setup
 
@@ -45,7 +45,10 @@ Install node modules
 ## Inside 'packt-frontend' folder, run below command
 * `npm run dev`
 
-## Run test cases
+# Open Browser
+* Go to the URL `http://localhost:3000/register` and register, do login after that with the same registered credentials
+
+## To Run the test cases
 * `$ composer run test`
 
 ## Note:- For fron-end and back-end app

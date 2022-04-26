@@ -89,7 +89,7 @@ export default {
       this.message = "";
       this.successful = false;
       this.loading = true;
-      this.$store.dispatch("auth/register", user).then(
+      this.$store.dispatch("/register", user).then(
         (data) => {
           if (data.status === 200) {
             this.message = data.message;
